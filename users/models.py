@@ -4,9 +4,13 @@ from PIL import Image
 
 class Profile(models.Model):
     user = models.OneToOneField(User,on_delete = models.CASCADE) #if user is deleted delete the profile(not other way round)
+    description = models.TextField(blank = True)
     image = models.ImageField(default = 'default.jpg', upload_to = 'profile_pics')
     is_business = models.BooleanField(default =False)
-
+    followers = models.IntegerField(default = 0)
+    following = models.IntegerField(default = 0)
+    
+    
     def __str__(self):
         return f"{self.user.username} Profile"
     
@@ -18,3 +22,19 @@ class Profile(models.Model):
             output_size = (300,300)
             img.thumbnail(output_size)
             img.save(self.image.path)
+
+'''
+Posts aur comments
+
+Model:
+Chats
+user 1,user 2
+message
+Model:
+Message
+foreign key: chats
+message
+time
+status - recvd , sent, seen
+
+'''
