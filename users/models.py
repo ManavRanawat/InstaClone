@@ -23,18 +23,3 @@ class Profile(models.Model):
             img.thumbnail(output_size)
             img.save(self.image.path)
 
-'''
-Posts aur comments
-
-Model:
-Chats
-user 1,user 2
-message
-Model:
-Message
-foreign key: chats
-message
-time
-status - recvd , sent, seen
-
-'''

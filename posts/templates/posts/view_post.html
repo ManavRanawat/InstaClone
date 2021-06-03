@@ -1,0 +1,65 @@
+{% extends "users/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <div class="content-section" style="align-items: center">
+        {% if post %}
+        <article class="media content-section">
+            <img class="rounded-circle article-img" src="{{ post.user.profile.image.url }}">
+            <div class="media-body">
+                <div class="article-metadata">
+                    <h2 class="mr-3">{{ post.user.username }}</h2>
+                </div>
+            </div>
+        </article>
+        <br>
+        <div style="align-items: center" >
+            <img class="rounded mx-auto d-block" src="{{ post.img.url }}"alt="Post"  >
+        </div>
+        <form method="POST">
+            {% csrf_token %}
+            <div class="media content-section">
+                {% ifequal is_liked True %}
+                    <h6 class="float-left">Liked</h6>
+                {% else %}
+                    <button type="submit" class="float-left" name="like_button" >Like this</button>
+                {% endifequal %}
+                <h6 class="ml-3 float-left">Liked by {{total_likes}} others</h6>
+                <!-- <a href="#" class="ml-3 float-left">Comment</a> -->
+            </div><br><br>
+            <div class="media content-section">
+                <p class="h3">{{post.user.username}}</p>
+                <p class="ml-2 h4">{{post.caption}}</p>
+                <!-- <a href="#" class="ml-3 float-left">Comment</a> -->
+            </div>
+
+            <div class="input-group mb-3">
+                <input type="text" name="comment_msg" class="form-control" placeholder="Comment here"  aria-describedby="basic-addon2">
+                <div class="input-group-append">
+                    <button name="comment" class="btn btn-outline-secondary btn-dark" type="submit">Send</button>
+                </div>
+            </div>
+            <div class="content-section">
+                {% for c in comments %}
+                    <h3 class="ml-3">{{c.comment_user.username}}</h3>
+                    <span class="ml-3">{{c.comment}}</span>
+                    <span class="ml-3 float-right">{{c.datetime | date:'d-m-Y H:i'}}</span>
+                {% endfor %}
+            </div>
+
+        </form>
+        {% else %}  
+            <h3>Seems like you have entered wrong url</h3>
+        {% endif %}
+        
+        <!-- <form method="POST" style="color: black;" enctype="multipart/form-data" >
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Add Post</legend>
+                {{ form | crispy }}
+            </fieldset>
+            <div class="form-group">
+                <button class="btn btn-outline-info" type="submit">Post</button>
+            </div>
+        </form> -->
+    </div>
+{% endblock content %}
