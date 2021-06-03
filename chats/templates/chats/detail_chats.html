@@ -1,0 +1,44 @@
+{% extends "users/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <div class="content-section">
+        {% for msg in msgs %}
+            {% ifequal msg.user request.user %}
+                <article class="media content-section" style="background-color: rgb(151, 180, 174);">
+                    <img class="rounded-circle article-img" src="{{ msg.user.profile.image.url }}">
+                    <div class="media-body">
+                    <div class="article-metadata">
+                        <b><p class="mr-2">{{ msg.user.username }}</p></b>
+                        <p class="mr-2">{{ msg.data }}</p>
+                        <small class="text-muted">{{ msg.date | date:"F d, Y"}}</small>
+                    </div>
+                    </div>
+                </article>
+            {% else %}
+                <article class="media content-section" style="background-color: rgb(167, 212, 224);">
+                    <img class="rounded-circle article-img" src="{{ msg.user.profile.image.url }}">
+                    <div class="media-body">
+                    <div class="article-metadata">
+                        <b><p class="mr-2">{{ msg.user.username }}</p></b>
+                        <p class="mr-2">{{ msg.data }}</p>
+                        <small class="text-muted">{{ msg.date | date:"F d, Y"}}</small>
+                    </div>
+                    </div>
+                </article>
+            {% endifequal %}
+        {% endfor %}
+    </div>
+    
+
+    <form method="post">
+        {% csrf_token %}
+        <div class="input-group mb-3">
+            <input type="text" name="textmsg" class="form-control" placeholder="Send Message..." aria-label="Recipient's username" aria-describedby="basic-addon2">
+            <div class="input-group-append">
+              <button class="btn btn-dark" type="submit">Send</button>
+            </div>
+        </div>
+        <br><br><br>
+
+    </form>
+{% endblock content %}
