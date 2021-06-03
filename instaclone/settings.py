@@ -39,7 +39,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'crispy_forms',
     'users.apps.UsersConfig',
+<<<<<<< HEAD
     'posts.apps.PostsConfig',
+=======
+    
+    'chats.apps.ChatsConfig',
+>>>>>>> 80bb199a7a6259f7ebe3116dfcfdb2d4f8cc776a
 ]
 
 MIDDLEWARE = [
