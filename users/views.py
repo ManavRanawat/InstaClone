@@ -8,6 +8,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 import pickle
 
 
+
 def register(request):
     if request.method == 'POST':
         form = UserRegisterForm(request.POST)
