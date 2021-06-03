@@ -16,21 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path,include
 from users import urls
-<<<<<<< HEAD
 from posts import urls
+from chats import urls
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('users.urls')),
     path('',include('posts.urls')),
-=======
-
-from chats import urls
-
-
-urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('',include('users.urls')),
-
     path('',include('chats.urls')),
->>>>>>> 80bb199a7a6259f7ebe3116dfcfdb2d4f8cc776a
 ]
