@@ -1,0 +1,20 @@
+{% extends "users/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <div class="content-section">
+        {% for user in users %}
+        <article class="media content-section">
+            <img class="rounded-circle article-img" src="{{ user.profile.image.url }}">
+            <div class="media-body">
+              <div class="article-metadata">
+                <a class="mr-2" href="{% url 'detail_chats' user.username %}">{{ user.username }}</a>
+              </div>
+            </div>
+          </article>
+        {% endfor %}
+    </div>
+    <div class="input-group-append">
+        <a href="{% url 'view_chats' %}" ><button class="btn btn-dark" type="button">Back</button></a>
+    </div>
+
+{% endblock content %}

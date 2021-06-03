@@ -1,0 +1,13 @@
+{% extends "users/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+    {% autoescape off %}
+        {{ plot_div }}
+        {{ plot_div2 }}
+        {{ graph2 }}
+        {{ graph3 }}
+        {{ graph4 }}
+    {% endautoescape %}
+
+{% endblock content %}
